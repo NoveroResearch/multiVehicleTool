@@ -1,0 +1,10 @@
+#ifndef MULTIVEHICLETOOL_CONFIG_H
+#define MULTIVEHICLETOOL_CONFIG_H
+
+#define MultiVehicleTool_VERSION_MAJOR @MultiVehicleTool_VERSION_MAJOR@
+#define MultiVehicleTool_VERSION_MINOR @MultiVehicleTool_VERSION_MINOR@
+
+#cmakedefine HAVE_OPTIONALDEP
+
+#endif
+

@@ -1,0 +1,35 @@
+# This drive file is a simple example of how to automate controlling vehicles with multiVehicleTool.
+# It connects to two Vehicles which we have named HADION0 and HADION1 (you can also insert 
+# the mac-addresses of the vehicles) and starts them up with different speeds, lets them run 
+# for a few seconds, then stops them and disconnects again. Change to your own liking.
+
+
+select-vehicle HADION0
+connect
+select-vehicle HADION1
+connect
+
+check connected-vehicles HADION0 HADION1
+sleep 1
+
+# This enables broadcasting to all connected vehicles
+select-vehicle 0
+# Enable sdk mode for the vehicles
+sdk-mode 1
+
+select-vehicle HADION0
+set-speed 400
+
+select-vehicle HADION1
+set-speed 600
+
+sleep 5
+
+select-vehicle HADION0
+set-speed 0
+
+select-vehicle HADION1
+set-speed 0
+
+select-vehicle 0
+disconnect

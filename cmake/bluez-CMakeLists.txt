@@ -1,0 +1,55 @@
+cmake_minimum_required(VERSION 2.8)
+
+project(bluez)
+
+SET (CMAKE_C_FLAGS "-g -Wall -Werror")
+
+# Include the directory itself as a path to include directories
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+
+# We need a bluetooth folder to satisfy includes in bluez code
+file(MAKE_DIRECTORY ${bluez_SOURCE_DIR}/include)
+execute_process(COMMAND "${CMAKE_COMMAND}" -E create_symlink
+	${bluez_SOURCE_DIR}/lib
+	${bluez_SOURCE_DIR}/include/bluetooth
+)
+
+include(FindGLIB2)
+
+set(BLUEZ_INCLUDE_DIRS
+	${bluez_SOURCE_DIR}
+	${bluez_SOURCE_DIR}/include
+)
+
+include_directories(
+	${BLUEZ_INCLUDE_DIRS}
+	${GLIB2_INCLUDE_DIRS}
+)
+
+set(bluez_SOURCES
+	${bluez_SOURCE_DIR}/lib/bluetooth.c
+	${bluez_SOURCE_DIR}/lib/hci.c
+	${bluez_SOURCE_DIR}/lib/sdp.c
+	${bluez_SOURCE_DIR}/lib/uuid.c
+	${bluez_SOURCE_DIR}/src/shared/att.c
+	${bluez_SOURCE_DIR}/src/shared/crypto.c
+	${bluez_SOURCE_DIR}/src/shared/gatt-db.c
+	${bluez_SOURCE_DIR}/src/shared/gatt-client.c
+	${bluez_SOURCE_DIR}/src/shared/gatt-helpers.c
+	${bluez_SOURCE_DIR}/src/shared/io-glib.c
+	${bluez_SOURCE_DIR}/src/shared/queue.c
+	${bluez_SOURCE_DIR}/src/shared/timeout-glib.c
+	${bluez_SOURCE_DIR}/src/shared/util.c
+	${bluez_SOURCE_DIR}/attrib/att.c
+)
+
+add_library(bluez ${bluez_SOURCES})
+
+target_link_libraries(bluez
+	${GLIB2_LIBRARIES}
+)
+
+install(TARGETS bluez
+	LIBRARY DESTINATION lib
+	ARCHIVE DESTINATION lib
+)

@@ -1,0 +1,10 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 1f0df49..9983cd0 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -28,4 +28,4 @@ if (BUILD_EXAMPLES)
+ endif ()
+ 
+ # CTest is flaky - Create a target to run our test suite directly
+-add_custom_target(test COMMAND ${PROJECT_BINARY_DIR}/test/Test)
++add_custom_target(tests COMMAND ${PROJECT_BINARY_DIR}/test/Test)

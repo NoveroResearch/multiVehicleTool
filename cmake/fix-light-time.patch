@@ -1,0 +1,13 @@
+diff --git a/src/protocol.h b/src/protocol.h
+index 259960a..682dadc 100644
+--- a/src/protocol.h
++++ b/src/protocol.h
+@@ -268,7 +268,7 @@ typedef struct anki_vehicle_msg_set_lights {
+ #define ANKI_VEHICLE_MSG_C2V_SET_LIGHTS_SIZE 2 
+ 
+ #define ANKI_VEHICLE_MAX_LIGHT_INTENSITY 14
+-#define ANKI_VEHICLE_MAX_LIGHT_TIME 11
++#define ANKI_VEHICLE_MAX_LIGHT_TIME 1530
+ 
+ // LED channel definitions - for RGB engine, front, and tail lights
+ typedef enum {
